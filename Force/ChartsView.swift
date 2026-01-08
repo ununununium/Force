@@ -155,6 +155,10 @@ struct ChartsView: View {
                         .modifier(CardModifier())
                         .padding(.horizontal, Theme.pad)
                         
+                        // Contribution-style Heatmap
+                        ContributionHeatmapView(entries: entries)
+                            .padding(.horizontal, Theme.pad)
+                        
                         // Weight Chart
                         VStack(alignment: .leading, spacing: 12) {
                             Label("Body Weight Trend", systemImage: "chart.line.uptrend.xyaxis")
