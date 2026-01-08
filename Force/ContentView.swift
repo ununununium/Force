@@ -11,14 +11,19 @@ import SwiftData
 struct ContentView: View {
     @State private var selectedTab = 0
     @State private var showingAddWorkout = false
+    @State private var showingDebugMenu = false
+    @State private var debugTapCount = 0
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            HomeView(showingAddWorkout: $showingAddWorkout)
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
-                }
-                .tag(0)
+            HomeView(
+                showingAddWorkout: $showingAddWorkout,
+                showingDebugMenu: $showingDebugMenu
+            )
+            .tabItem {
+                Label("Home", systemImage: "house.fill")
+            }
+            .tag(0)
             
             ChartsView()
                 .tabItem {
@@ -35,12 +40,21 @@ struct ContentView: View {
         .sheet(isPresented: $showingAddWorkout) {
             AddWorkoutView()
         }
+        .sheet(isPresented: $showingDebugMenu) {
+            DebugMenuView()
+        }
+        .onShake {
+            // Shake gesture to open debug menu
+            showingDebugMenu = true
+        }
     }
 }
 
 struct HomeView: View {
     @Query(sort: \WorkoutEntry.date, order: .reverse) private var entries: [WorkoutEntry]
     @Binding var showingAddWorkout: Bool
+    @Binding var showingDebugMenu: Bool
+    @State private var debugSettings = DebugSettings.shared
     
     private var todayEntry: WorkoutEntry? {
         entries.first { Calendar.current.isDateInToday($0.date) }
@@ -258,6 +272,22 @@ struct HomeView: View {
             .background(Theme.heroGradient.opacity(0.2))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showingDebugMenu = true
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: "ladybug.fill")
+                                .font(.caption)
+                            if debugSettings.useMockData {
+                                Text("MOCK")
+                                    .font(.caption2.bold())
+                            }
+                        }
+                        .foregroundStyle(debugSettings.useMockData ? .orange : .secondary)
+                    }
+                }
+                
                 ToolbarItem(placement: .primaryAction) {
                     Button {
                         showingAddWorkout = true
@@ -367,5 +397,6 @@ struct RecentActivityRow: View {
 #Preview {
     ContentView()
         .modelContainer(for: WorkoutEntry.self, inMemory: true)
+        .environment(DebugSettings.shared)
 }
 
