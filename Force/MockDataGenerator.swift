@@ -53,7 +53,8 @@ struct MockDataGenerator {
                 date: date,
                 workoutMinutes: workoutMinutes,
                 weightKg: weight,
-                notes: notes
+                notes: notes,
+                isMockData: true
             )
             
             entries.append(entry)
@@ -71,9 +72,28 @@ struct MockDataGenerator {
         }
     }
     
+    static func clearMockData(from modelContext: ModelContext) {
+        do {
+            // Fetch only mock data entries
+            let descriptor = FetchDescriptor<WorkoutEntry>(
+                predicate: #Predicate { $0.isMockData == true }
+            )
+            let mockEntries = try modelContext.fetch(descriptor)
+            
+            // Delete each mock entry
+            for entry in mockEntries {
+                modelContext.delete(entry)
+            }
+            
+            try modelContext.save()
+        } catch {
+            print("Failed to clear mock data: \(error)")
+        }
+    }
+    
     static func populateMockData(in modelContext: ModelContext, count: Int = 30) {
-        // Clear existing data first
-        clearAllData(from: modelContext)
+        // Clear existing mock data first (preserve real data)
+        clearMockData(from: modelContext)
         
         // Generate and insert mock entries
         let mockEntries = generateMockEntries(count: count)

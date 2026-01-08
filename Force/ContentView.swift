@@ -51,10 +51,25 @@ struct ContentView: View {
 }
 
 struct HomeView: View {
-    @Query(sort: \WorkoutEntry.date, order: .reverse) private var entries: [WorkoutEntry]
+    @Query(sort: \WorkoutEntry.date, order: .reverse) private var allEntries: [WorkoutEntry]
     @Binding var showingAddWorkout: Bool
     @Binding var showingDebugMenu: Bool
-    @State private var debugSettings = DebugSettings.shared
+    @Environment(DebugSettings.self) private var debugSettings
+    
+    private var entries: [WorkoutEntry] {
+        // Debug mode: show all data
+        if debugSettings.showAllData {
+            return allEntries
+        }
+        
+        // Only filter if explicitly in mock mode
+        if debugSettings.useMockData {
+            return allEntries.filter { $0.isMockData == true }
+        } else {
+            // Show only real data (or all data if isMockData is not set/false)
+            return allEntries.filter { $0.isMockData == false }
+        }
+    }
     
     private var todayEntry: WorkoutEntry? {
         entries.first { Calendar.current.isDateInToday($0.date) }
@@ -395,8 +410,9 @@ struct RecentActivityRow: View {
 }
 
 #Preview {
-    ContentView()
+    @Previewable @State var debugSettings = DebugSettings.shared
+    return ContentView()
         .modelContainer(for: WorkoutEntry.self, inMemory: true)
-        .environment(DebugSettings.shared)
+        .environment(debugSettings)
 }
 

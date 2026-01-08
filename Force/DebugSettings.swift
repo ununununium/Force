@@ -24,9 +24,16 @@ class DebugSettings {
         }
     }
     
+    var showAllData: Bool {
+        didSet {
+            UserDefaults.standard.set(showAllData, forKey: "showAllData")
+        }
+    }
+    
     private init() {
         self.useMockData = UserDefaults.standard.bool(forKey: "useMockData")
         self.mockDataCount = UserDefaults.standard.integer(forKey: "mockDataCount")
+        self.showAllData = UserDefaults.standard.bool(forKey: "showAllData")
         
         // Default to 30 entries if not set
         if mockDataCount == 0 {
@@ -37,5 +44,6 @@ class DebugSettings {
     func reset() {
         useMockData = false
         mockDataCount = 30
+        showAllData = false
     }
 }

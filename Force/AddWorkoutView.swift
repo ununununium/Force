@@ -148,10 +148,18 @@ struct AddWorkoutView: View {
             date: selectedDate,
             workoutMinutes: workoutMinutes,
             weightKg: weight,
-            notes: notes
+            notes: notes,
+            isMockData: false  // Always save manually added entries as real data
         )
         
         modelContext.insert(entry)
+        
+        // Explicitly save the context
+        do {
+            try modelContext.save()
+        } catch {
+            print("Error saving workout: \(error)")
+        }
         
         withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
             showingSuccess = true

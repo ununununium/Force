@@ -10,8 +10,24 @@ import SwiftData
 import Charts
 
 struct ChartsView: View {
-    @Query(sort: \WorkoutEntry.date, order: .forward) private var entries: [WorkoutEntry]
+    @Query(sort: \WorkoutEntry.date, order: .forward) private var allEntries: [WorkoutEntry]
+    @Environment(DebugSettings.self) private var debugSettings
     @State private var selectedTimeRange: TimeRange = .month
+    
+    private var entries: [WorkoutEntry] {
+        // Debug mode: show all data
+        if debugSettings.showAllData {
+            return allEntries
+        }
+        
+        // Only filter if explicitly in mock mode
+        if debugSettings.useMockData {
+            return allEntries.filter { $0.isMockData == true }
+        } else {
+            // Show only real data (or all data if isMockData is not set/false)
+            return allEntries.filter { $0.isMockData == false }
+        }
+    }
     
     enum TimeRange: String, CaseIterable {
         case week = "Week"

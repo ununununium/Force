@@ -44,16 +44,23 @@ The Force app now includes a comprehensive debug menu that allows you to switch 
 2. **Generate Mock Data**
    - Ensure "Use Mock Data" is enabled
    - Tap "Generate Mock Data"
-   - Confirm the action (this will replace ALL existing data)
+   - Confirm the action (this will replace existing mock data)
    - The app will populate with realistic test data
+   - **Your real data is preserved!**
 
 3. **Switch Back to Real Data**
    - Toggle "Use Mock Data" to OFF
    - Your real workout entries will be displayed again
+   - Mock data is hidden but still in the database
 
-4. **Clear All Data**
+4. **Clear Mock Data Only**
+   - Tap "Clear Mock Data Only"
+   - Confirm the action to remove only mock entries
+   - Your real data remains untouched
+
+5. **Clear All Data**
    - Tap "Clear All Data" (works in both modes)
-   - Confirm the action to remove all entries
+   - Confirm the action to remove ALL entries (real + mock)
 
 ## Settings Persistence
 
@@ -69,17 +76,22 @@ Debug settings are saved using UserDefaults and persist across app launches:
 
 ## Safety Features
 
-- All destructive actions (Generate Mock Data, Clear All Data) require confirmation
-- Clear warnings about data loss
-- Settings can be reset to defaults using "Reset Debug Settings"
+- **Data Separation**: Real and mock data coexist separately
+- **Safe Switching**: Toggle between real/mock without losing data
+- **Confirmation Dialogs**: All destructive actions require confirmation
+- **Clear Warnings**: Explicit messages about what will be deleted
+- **Settings Persistence**: Preferences saved across app launches
+- **Reset Option**: Reset to defaults button available
 
 ## Technical Details
 
-### Files Added
+### Files Added/Modified
 - `DebugSettings.swift` - Manages debug configuration state
 - `MockDataGenerator.swift` - Generates realistic workout entries
 - `DebugMenuView.swift` - Debug menu UI
 - `ShakeGesture.swift` - Shake gesture detection
+- `WorkoutEntry.swift` - Added `isMockData` flag to distinguish data types
+- All view files - Updated to filter data based on mock/real mode
 
 ### Mock Data Characteristics
 - **Frequency**: ~70% of days have workouts (realistic adherence rate)
@@ -87,13 +99,22 @@ Debug settings are saved using UserDefaults and persist across app launches:
 - **Weight Variation**: ±3kg from base weight (70kg)
 - **Notes**: Randomly selected from a pool of motivational messages
 - **Date Range**: Covers the last N days (configurable count)
+- **Flag**: All mock entries are marked with `isMockData = true`
+
+### Data Management
+- **Real Data**: Marked with `isMockData = false` (default for manually added entries)
+- **Mock Data**: Marked with `isMockData = true` (generated via debug menu)
+- **Filtering**: Views automatically filter based on current mode setting
+- **Coexistence**: Both types of data exist in the same database
+- **Safety**: Real data is never deleted when generating mock data
 
 ## Best Practices
 
 1. **Testing**: Use mock data for UI testing and screenshot generation
 2. **Development**: Enable mock data when working on analytics features
 3. **Production**: Keep mock data OFF for real usage
-4. **Data Safety**: Always backup your real data before generating mock data
+4. **Data Safety**: Real data is automatically preserved when generating mock data
+5. **Cleanup**: Use "Clear Mock Data Only" to remove test data without affecting real data
 
 ## Reset Everything
 
