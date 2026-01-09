@@ -15,6 +15,7 @@ struct HistoryView: View {
     @State private var showingAddWorkout = false
     @State private var selectedEntry: WorkoutEntry?
     @State private var showingDeleteAlert = false
+    @State private var editingEntry: WorkoutEntry?
     
     private var entries: [WorkoutEntry] {
         // Debug mode: show all data
@@ -41,35 +42,59 @@ struct HistoryView: View {
                         Text("Tap the + button to log your first workout")
                     }
                 } else {
-                    ScrollView {
-                        LazyVStack(spacing: 12) {
-                            ForEach(groupedEntries.keys.sorted(by: >), id: \.self) { date in
-                                Section {
-                                    ForEach(groupedEntries[date] ?? []) { entry in
-                                        WorkoutCard(entry: entry)
-                                            .contextMenu {
-                                                Button(role: .destructive) {
-                                                    selectedEntry = entry
-                                                    showingDeleteAlert = true
-                                                } label: {
-                                                    Label("Delete", systemImage: "trash")
+                    List {
+                        ForEach(groupedEntries.keys.sorted(by: >), id: \.self) { date in
+                            Section {
+                                ForEach(groupedEntries[date] ?? []) { entry in
+                                    WorkoutCard(entry: entry)
+                                        .listRowInsets(EdgeInsets(top: 6, leading: Theme.pad, bottom: 6, trailing: Theme.pad))
+                                        .listRowSeparator(.hidden)
+                                        .listRowBackground(Color.clear)
+                                        .contentShape(Rectangle())
+                                        .onTapGesture {
+                                            editingEntry = entry
+                                        }
+                                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                            Button(role: .destructive) {
+                                                withAnimation {
+                                                    deleteEntry(entry)
                                                 }
+                                            } label: {
+                                                Label("Delete", systemImage: "trash")
                                             }
-                                    }
-                                } header: {
-                                    HStack {
-                                        Text(date, style: .date)
-                                            .font(.headline)
-                                            .foregroundStyle(.primary)
-                                        Spacer()
-                                    }
-                                    .padding(.horizontal, Theme.pad)
-                                    .padding(.top, 8)
+                                        }
+                                        .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                            Button {
+                                                editingEntry = entry
+                                            } label: {
+                                                Label("Edit", systemImage: "pencil")
+                                            }
+                                            .tint(Theme.primaryCTA)
+                                        }
+                                        .contextMenu {
+                                            Button {
+                                                editingEntry = entry
+                                            } label: {
+                                                Label("Edit", systemImage: "pencil")
+                                            }
+                                            
+                                            Button(role: .destructive) {
+                                                selectedEntry = entry
+                                                showingDeleteAlert = true
+                                            } label: {
+                                                Label("Delete", systemImage: "trash")
+                                            }
+                                        }
                                 }
+                            } header: {
+                                Text(date, style: .date)
+                                    .font(.headline)
+                                    .foregroundStyle(.primary)
                             }
                         }
-                        .padding(.vertical, Theme.pad)
                     }
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden)
                 }
             }
             .background(Theme.heroGradient.opacity(0.2))
@@ -88,6 +113,9 @@ struct HistoryView: View {
             }
             .sheet(isPresented: $showingAddWorkout) {
                 AddWorkoutView()
+            }
+            .sheet(item: $editingEntry) { entry in
+                AddWorkoutView(entryToEdit: entry)
             }
             .alert("Delete Workout", isPresented: $showingDeleteAlert) {
                 Button("Cancel", role: .cancel) { }
@@ -189,7 +217,6 @@ struct WorkoutCard: View {
             RoundedRectangle(cornerRadius: Theme.corner, style: .continuous)
                 .strokeBorder(Theme.hairline.opacity(0.4), lineWidth: 0.5)
         )
-        .padding(.horizontal, Theme.pad)
     }
 }
 

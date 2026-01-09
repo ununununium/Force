@@ -12,11 +12,30 @@ struct AddWorkoutView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     
+    let entryToEdit: WorkoutEntry?
+    
     @State private var selectedDate = Date()
     @State private var workoutMinutes: Int = 30
     @State private var weightKg: String = ""
     @State private var notes: String = ""
     @State private var showingSuccess = false
+    @FocusState private var isWeightFieldFocused: Bool
+    
+    private var isEditMode: Bool {
+        entryToEdit != nil
+    }
+    
+    init(entryToEdit: WorkoutEntry? = nil) {
+        self.entryToEdit = entryToEdit
+        
+        // Initialize state values from entry if editing
+        if let entry = entryToEdit {
+            _selectedDate = State(initialValue: entry.date)
+            _workoutMinutes = State(initialValue: entry.workoutMinutes)
+            _weightKg = State(initialValue: String(format: "%.1f", entry.weightKg))
+            _notes = State(initialValue: entry.notes)
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -24,15 +43,15 @@ struct AddWorkoutView: View {
                 VStack(spacing: 24) {
                     // Hero Section
                     VStack(spacing: 12) {
-                        Image(systemName: "figure.strengthtraining.traditional")
+                        Image(systemName: isEditMode ? "pencil.circle.fill" : "figure.strengthtraining.traditional")
                             .font(.system(size: 60))
                             .foregroundStyle(Theme.primaryCTA)
                             .symbolEffect(.bounce, value: showingSuccess)
                         
-                        Text("Log Your Workout")
+                        Text(isEditMode ? "Edit Workout" : "Log Your Workout")
                             .font(.title2.bold())
                         
-                        Text("Track your progress, one day at a time")
+                        Text(isEditMode ? "Update your workout details" : "Track your progress, one day at a time")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }
@@ -93,6 +112,29 @@ struct AddWorkoutView: View {
                             .padding()
                             .background(Color(.systemGray6))
                             .clipShape(RoundedRectangle(cornerRadius: Theme.cornerSmall, style: .continuous))
+                            .focused($isWeightFieldFocused)
+                            .toolbar {
+                                ToolbarItemGroup(placement: .keyboard) {
+                                    Button(action: {
+                                        isWeightFieldFocused = false
+                                        saveWorkout()
+                                    }) {
+                                        HStack {
+                                            Image(systemName: "checkmark.circle.fill")
+                                            Text(isEditMode ? "Update Workout" : "Save Workout")
+                                                .fontWeight(.semibold)
+                                        }
+                                        .frame(maxWidth: .infinity)
+                                        .background(Theme.primaryCTA)
+                                        .foregroundStyle(.white)
+                                        .padding(.vertical)
+                                    }
+                                    .buttonStyle(.borderedProminent)
+                                    .frame(maxWidth: .infinity)
+                                    .clipShape(RoundedRectangle(cornerRadius: Theme.corner, style: .continuous))
+                                    .shadow(color: Theme.primaryCTA.opacity(0.3), radius: 12, y: 6)
+                                }
+                            }
                     }
                     .modifier(CardModifier())
                     
@@ -114,7 +156,7 @@ struct AddWorkoutView: View {
                     Button(action: saveWorkout) {
                         HStack {
                             Image(systemName: "checkmark.circle.fill")
-                            Text("Save Workout")
+                            Text(isEditMode ? "Update Workout" : "Save Workout")
                                 .font(.headline)
                         }
                         .frame(maxWidth: .infinity)
@@ -144,15 +186,23 @@ struct AddWorkoutView: View {
     private func saveWorkout() {
         guard let weight = Double(weightKg), weight > 0 else { return }
         
-        let entry = WorkoutEntry(
-            date: selectedDate,
-            workoutMinutes: workoutMinutes,
-            weightKg: weight,
-            notes: notes,
-            isMockData: false  // Always save manually added entries as real data
-        )
-        
-        modelContext.insert(entry)
+        if let existingEntry = entryToEdit {
+            // Update existing entry
+            existingEntry.date = selectedDate
+            existingEntry.workoutMinutes = workoutMinutes
+            existingEntry.weightKg = weight
+            existingEntry.notes = notes
+        } else {
+            // Create new entry
+            let entry = WorkoutEntry(
+                date: selectedDate,
+                workoutMinutes: workoutMinutes,
+                weightKg: weight,
+                notes: notes,
+                isMockData: false  // Always save manually added entries as real data
+            )
+            modelContext.insert(entry)
+        }
         
         // Explicitly save the context
         do {
