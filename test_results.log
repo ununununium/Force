@@ -1,0 +1,106 @@
+Command line invocation:
+    /Applications/Xcode-26.2.0.app/Contents/Developer/usr/bin/xcodebuild test-without-building -scheme Force -destination "platform=iOS Simulator,id=DB56AF57-F168-4CEA-8CA9-325F7F8916B8"
+
+2026-01-08 00:47:35.448 xcodebuild[61041:11144010] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-01-08 00:50:13.262 xcodebuild[61041:11144010] [MT] IDETestOperationsObserverDebug: 157.019 elapsed -- Testing started completed.
+2026-01-08 00:50:13.262 xcodebuild[61041:11144010] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-01-08 00:50:13.263 xcodebuild[61041:11144010] [MT] IDETestOperationsObserverDebug: 157.019 sec, +157.019 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/yuting/Library/Developer/Xcode/DerivedData/Force-ehyecirqdkseoabwmqkicteesxik/Logs/Test/Test-Force-2026.01.08_00-47-35--0800.xcresult
+
+** TEST EXECUTE FAILED **
+
+Testing started
+Test suite 'HomeViewLogicTests' started on 'Clone 1 of iPhone 17 - Force (61319)'
+Test case 'HomeViewLogicTests.testFilteringMockDataOnly()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.008 seconds)
+Test case 'HomeViewLogicTests.testFilteringRealDataOnly()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'HomeViewLogicTests.testShowAllDataMode()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'HomeViewLogicTests.testStreakCalculationConsecutiveDays()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.004 seconds)
+Test case 'HomeViewLogicTests.testStreakCalculationNoWorkouts()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'HomeViewLogicTests.testStreakCalculationStartingYesterday()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'HomeViewLogicTests.testStreakCalculationWithGap()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'HomeViewLogicTests.testTodayEntryDoesNotExist()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'HomeViewLogicTests.testTodayEntryExists()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.004 seconds)
+Test case 'HomeViewLogicTests.testWeekEntriesEmpty()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'HomeViewLogicTests.testWeekEntriesFiltering()' failed on 'Clone 1 of iPhone 17 - Force (61319)' (0.272 seconds)
+Test case 'HomeViewLogicTests.testWeeklyTotalCalculation()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.012 seconds)
+Test case 'HomeViewLogicTests.testWeeklyTotalWithNoEntries()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test suite 'ChartsViewLogicTests' started on 'Clone 1 of iPhone 17 - Force (61319)'
+Test case 'ChartsViewLogicTests.testAverageDurationCalculation()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'ChartsViewLogicTests.testAverageWeightCalculation()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ChartsViewLogicTests.testEmptyStateWithNoData()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'ChartsViewLogicTests.testMonthTimeRangeFiltering()' failed on 'Clone 1 of iPhone 17 - Force (61319)' (0.006 seconds)
+Test case 'ChartsViewLogicTests.testSingleEntryStatistics()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ChartsViewLogicTests.testStatisticsWithNoData()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ChartsViewLogicTests.testThreeMonthsTimeRangeFiltering()' failed on 'Clone 1 of iPhone 17 - Force (61319)' (0.007 seconds)
+Test case 'ChartsViewLogicTests.testTotalMinutesCalculation()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ChartsViewLogicTests.testVeryLongWorkout()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ChartsViewLogicTests.testWeeklyDataAggregation()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ChartsViewLogicTests.testWeeklyDataMultipleWeeks()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ChartsViewLogicTests.testWeekTimeRangeFiltering()' failed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ChartsViewLogicTests.testWorkoutCountCalculation()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.006 seconds)
+Test suite 'DebugSettingsTests' started on 'Clone 1 of iPhone 17 - Force (61319)'
+Test case 'DebugSettingsTests.testDefaultInitialization()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'DebugSettingsTests.testMockDataCountDefaultValue()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'DebugSettingsTests.testMockDataCountPersistence()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.004 seconds)
+Test case 'DebugSettingsTests.testMockDataCountValidRange()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.279 seconds)
+Test case 'DebugSettingsTests.testMultipleSettingsIndependence()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'DebugSettingsTests.testResetToDefaults()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'DebugSettingsTests.testShowAllDataPersistence()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'DebugSettingsTests.testShowAllDataToggle()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'DebugSettingsTests.testUseMockDataPersistence()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'DebugSettingsTests.testUseMockDataToggle()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test suite 'AddWorkoutViewLogicTests' started on 'Clone 1 of iPhone 17 - Force (61319)'
+Test case 'AddWorkoutViewLogicTests.testContextSaveSuccess()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'AddWorkoutViewLogicTests.testDefaultWorkoutMinutes()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'AddWorkoutViewLogicTests.testMockDataFlagIsAlwaysFalseForManualEntries()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'AddWorkoutViewLogicTests.testMultipleEntriesOnSameDay()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'AddWorkoutViewLogicTests.testMultipleSavesDoNotDuplicate()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.004 seconds)
+Test case 'AddWorkoutViewLogicTests.testNegativeWeightValidation()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'AddWorkoutViewLogicTests.testNotesMaxLength()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'AddWorkoutViewLogicTests.testSaveMultipleWorkouts()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.005 seconds)
+Test case 'AddWorkoutViewLogicTests.testSaveWorkoutWithoutNotes()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.004 seconds)
+Test case 'AddWorkoutViewLogicTests.testSaveWorkoutWithPastDate()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'AddWorkoutViewLogicTests.testSaveWorkoutWithTodayDate()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'AddWorkoutViewLogicTests.testSaveWorkoutWithValidData()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'AddWorkoutViewLogicTests.testWeightStringToDoubleConversion()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'AddWorkoutViewLogicTests.testWeightValidation()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'AddWorkoutViewLogicTests.testWorkoutMinutesRange()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'AddWorkoutViewLogicTests.testWorkoutMinutesSliderRange()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'AddWorkoutViewLogicTests.testZeroWeightValidation()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.049 seconds)
+Test suite 'MockDataGeneratorTests' started on 'Clone 1 of iPhone 17 - Force (61319)'
+Test case 'MockDataGeneratorTests.testClearAllData()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.041 seconds)
+Test case 'MockDataGeneratorTests.testClearMockDataOnly()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.006 seconds)
+Test case 'MockDataGeneratorTests.testClearMockDataWhenNoMockData()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'MockDataGeneratorTests.testGenerateMockEntriesAreMarkedAsMock()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'MockDataGeneratorTests.testGenerateMockEntriesAreSorted()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.103 seconds)
+Test case 'MockDataGeneratorTests.testGenerateMockEntriesCount()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'MockDataGeneratorTests.testGenerateMockEntriesDateRange()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'MockDataGeneratorTests.testGenerateMockEntriesHaveValidData()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'MockDataGeneratorTests.testPopulateMockData()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.005 seconds)
+Test case 'MockDataGeneratorTests.testPopulateMockDataPreservesRealData()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'MockDataGeneratorTests.testPopulateMockDataReplacesOldMockData()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.005 seconds)
+Test suite 'ContributionHeatmapTests' started on 'Clone 1 of iPhone 17 - Force (61319)'
+Test case 'ContributionHeatmapTests.testColorForMinutes()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ContributionHeatmapTests.testDailyDataAggregation()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ContributionHeatmapTests.testDailyDataMultipleDays()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ContributionHeatmapTests.testDateRangeGeneration()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'ContributionHeatmapTests.testLongestStreakConsecutiveDays()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ContributionHeatmapTests.testLongestStreakNoWorkouts()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test case 'ContributionHeatmapTests.testLongestStreakWithGaps()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ContributionHeatmapTests.testTotalMinutesCalculation()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.004 seconds)
+Test case 'ContributionHeatmapTests.testTotalWorkoutDays()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'ContributionHeatmapTests.testTotalWorkoutDaysWithZeroMinutes()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test suite 'WorkoutEntryTests' started on 'Clone 1 of iPhone 17 - Force (61319)'
+Test case 'WorkoutEntryTests.testMockDataFlag()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'WorkoutEntryTests.testMultipleEntriesPersistence()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'WorkoutEntryTests.testNotesWithSpecialCharacters()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'WorkoutEntryTests.testWeightKgPrecision()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'WorkoutEntryTests.testWorkoutEntryCustomInitialization()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'WorkoutEntryTests.testWorkoutEntryDefaultInitialization()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.006 seconds)
+Test case 'WorkoutEntryTests.testWorkoutEntryDeletion()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.003 seconds)
+Test case 'WorkoutEntryTests.testWorkoutEntryPersistence()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.002 seconds)
+Test case 'WorkoutEntryTests.testWorkoutMinutesRange()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.001 seconds)
+Test suite 'ForceTests' started on 'Clone 1 of iPhone 17 - Force (61319)'
+Test case 'ForceTests/example()' passed on 'Clone 1 of iPhone 17 - Force (61319)' (0.000 seconds)

@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		0ECFA9F02F0FA5570039DBDA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ECFA9BE2F0DF4C10039DBDA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0ECFA9C52F0DF4C10039DBDA;
+			remoteInfo = Force;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0ECFA9C62F0DF4C10039DBDA /* Force.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Force.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0ECFA9EC2F0FA5570039DBDA /* ForceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = Force;
 			sourceTree = "<group>";
 		};
+		0ECFA9ED2F0FA5570039DBDA /* ForceTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ForceTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0ECFA9C32F0DF4C10039DBDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0ECFA9E92F0FA5570039DBDA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				0ECFA9C82F0DF4C10039DBDA /* Force */,
+				0ECFA9ED2F0FA5570039DBDA /* ForceTests */,
 				0ECFA9C72F0DF4C10039DBDA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				0ECFA9C62F0DF4C10039DBDA /* Force.app */,
+				0ECFA9EC2F0FA5570039DBDA /* ForceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = 0ECFA9C62F0DF4C10039DBDA /* Force.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0ECFA9EB2F0FA5570039DBDA /* ForceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0ECFA9F22F0FA5570039DBDA /* Build configuration list for PBXNativeTarget "ForceTests" */;
+			buildPhases = (
+				0ECFA9E82F0FA5570039DBDA /* Sources */,
+				0ECFA9E92F0FA5570039DBDA /* Frameworks */,
+				0ECFA9EA2F0FA5570039DBDA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0ECFA9F12F0FA5570039DBDA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				0ECFA9ED2F0FA5570039DBDA /* ForceTests */,
+			);
+			name = ForceTests;
+			packageProductDependencies = (
+			);
+			productName = ForceTests;
+			productReference = 0ECFA9EC2F0FA5570039DBDA /* ForceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					0ECFA9C52F0DF4C10039DBDA = {
 						CreatedOnToolsVersion = 26.2;
+					};
+					0ECFA9EB2F0FA5570039DBDA = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 0ECFA9C52F0DF4C10039DBDA;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				0ECFA9C52F0DF4C10039DBDA /* Force */,
+				0ECFA9EB2F0FA5570039DBDA /* ForceTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0ECFA9C42F0DF4C10039DBDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0ECFA9EA2F0FA5570039DBDA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0ECFA9E82F0FA5570039DBDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0ECFA9F12F0FA5570039DBDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0ECFA9C52F0DF4C10039DBDA /* Force */;
+			targetProxy = 0ECFA9F02F0FA5570039DBDA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0ECFA9CF2F0DF4C10039DBDA /* Debug */ = {
@@ -261,6 +336,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -293,6 +369,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,6 +384,48 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0ECFA9F32F0FA5570039DBDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W4W6VGC55J;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Force.ForceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Force.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Force";
+			};
+			name = Debug;
+		};
+		0ECFA9F42F0FA5570039DBDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W4W6VGC55J;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Force.ForceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Force.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Force";
 			};
 			name = Release;
 		};
@@ -327,6 +446,15 @@
 			buildConfigurations = (
 				0ECFA9D22F0DF4C10039DBDA /* Debug */,
 				0ECFA9D32F0DF4C10039DBDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0ECFA9F22F0FA5570039DBDA /* Build configuration list for PBXNativeTarget "ForceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0ECFA9F32F0FA5570039DBDA /* Debug */,
+				0ECFA9F42F0FA5570039DBDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
