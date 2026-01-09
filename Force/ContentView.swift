@@ -126,31 +126,6 @@ struct HomeView: View {
                         }
                         .padding(.horizontal, Theme.pad)
                         .padding(.top, 8)
-                        
-                        // Quick Stats
-                        HStack(spacing: 12) {
-                            QuickStatCard(
-                                value: "\(streak)",
-                                label: "Day Streak",
-                                icon: "flame.fill",
-                                color: Theme.warning
-                            )
-                            
-                            QuickStatCard(
-                                value: "\(weekEntries.count)",
-                                label: "This Week",
-                                icon: "calendar",
-                                color: Theme.primaryCTA
-                            )
-                            
-                            QuickStatCard(
-                                value: "\(thisWeekTotal / 60)h",
-                                label: "Total Time",
-                                icon: "clock.fill",
-                                color: Theme.accent2
-                            )
-                        }
-                        .padding(.horizontal, Theme.pad)
                     }
                     
                     // Today's Status
@@ -243,22 +218,10 @@ struct HomeView: View {
                     .modifier(CardModifier())
                     .padding(.horizontal, Theme.pad)
                     
-                    // Recent Activity
+                    // Activity Heatmap
                     if !entries.isEmpty {
-                        VStack(alignment: .leading, spacing: 12) {
-                            HStack {
-                                Label("Recent Activity", systemImage: "clock.arrow.circlepath")
-                                    .font(.headline)
-                                    .foregroundStyle(.secondary)
-                                Spacer()
-                            }
-                            
-                            ForEach(Array(entries.prefix(3))) { entry in
-                                RecentActivityRow(entry: entry)
-                            }
-                        }
-                        .modifier(CardModifier())
-                        .padding(.horizontal, Theme.pad)
+                        ContributionHeatmapView(entries: entries, weeksToShow: 26)
+                            .padding(.horizontal, Theme.pad)
                     }
                     
                     // Motivational Card
