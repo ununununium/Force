@@ -13,12 +13,14 @@ struct ContentView: View {
     @State private var showingAddWorkout = false
     @State private var showingDebugMenu = false
     @State private var debugTapCount = 0
+    @State private var entryToEdit: WorkoutEntry?
     
     var body: some View {
         TabView(selection: $selectedTab) {
             HomeView(
                 showingAddWorkout: $showingAddWorkout,
-                showingDebugMenu: $showingDebugMenu
+                showingDebugMenu: $showingDebugMenu,
+                entryToEdit: $entryToEdit
             )
             .tabItem {
                 Label("Home", systemImage: "house.fill")
@@ -40,6 +42,9 @@ struct ContentView: View {
         .sheet(isPresented: $showingAddWorkout) {
             AddWorkoutView()
         }
+        .sheet(item: $entryToEdit) { entry in
+            AddWorkoutView(entryToEdit: entry)
+        }
         .sheet(isPresented: $showingDebugMenu) {
             DebugMenuView()
         }
@@ -54,6 +59,7 @@ struct HomeView: View {
     @Query(sort: \WorkoutEntry.date, order: .reverse) private var allEntries: [WorkoutEntry]
     @Binding var showingAddWorkout: Bool
     @Binding var showingDebugMenu: Bool
+    @Binding var entryToEdit: WorkoutEntry?
     @Environment(DebugSettings.self) private var debugSettings
     
     private var entries: [WorkoutEntry] {
@@ -155,47 +161,61 @@ struct HomeView: View {
                                 .foregroundStyle(Theme.primaryCTA)
                             Spacer()
                             if todayEntry != nil {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundStyle(.green)
-                                    .font(.title3)
+                                Button(action: {
+                                    entryToEdit = todayEntry
+                                }) {
+                                    HStack(spacing: 4) {
+                                        Image(systemName: "pencil")
+                                            .font(.caption)
+                                        Text("Update")
+                                            .font(.subheadline.weight(.medium))
+                                    }
+                                    .foregroundStyle(Theme.primaryCTA)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 6)
+                                    .background(Theme.primaryCTA.opacity(0.1))
+                                    .clipShape(Capsule())
+                                }
                             }
                         }
                         
                         if let entry = todayEntry {
-                            HStack(spacing: 20) {
-                                VStack(alignment: .leading) {
-                                    Text("\(entry.workoutMinutes)")
-                                        .font(.system(size: 32, weight: .bold, design: .rounded))
-                                        .foregroundStyle(Theme.primaryCTA)
-                                    Text("minutes")
-                                        .font(.subheadline)
-                                        .foregroundStyle(.secondary)
+                            VStack(alignment: .leading, spacing: 12) {
+                                HStack(spacing: 20) {
+                                    VStack(alignment: .leading) {
+                                        Text("\(entry.workoutMinutes)")
+                                            .font(.system(size: 32, weight: .bold, design: .rounded))
+                                            .foregroundStyle(Theme.primaryCTA)
+                                        Text("minutes")
+                                            .font(.subheadline)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    
+                                    Divider()
+                                        .frame(height: 40)
+                                    
+                                    VStack(alignment: .leading) {
+                                        Text("\(entry.weightKg, specifier: "%.1f")")
+                                            .font(.system(size: 32, weight: .bold, design: .rounded))
+                                            .foregroundStyle(Theme.accent2)
+                                        Text("kg")
+                                            .font(.subheadline)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    
+                                    Spacer()
                                 }
                                 
-                                Divider()
-                                    .frame(height: 40)
-                                
-                                VStack(alignment: .leading) {
-                                    Text("\(entry.weightKg, specifier: "%.1f")")
-                                        .font(.system(size: 32, weight: .bold, design: .rounded))
-                                        .foregroundStyle(Theme.accent2)
-                                    Text("kg")
-                                        .font(.subheadline)
+                                if !entry.notes.isEmpty {
+                                    Text(entry.notes)
+                                        .font(.body)
                                         .foregroundStyle(.secondary)
+                                        .padding(.vertical, 8)
+                                        .padding(.horizontal, 12)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .background(Color(.systemGray6))
+                                        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerSmall, style: .continuous))
                                 }
-                                
-                                Spacer()
-                            }
-                            
-                            if !entry.notes.isEmpty {
-                                Text(entry.notes)
-                                    .font(.body)
-                                    .foregroundStyle(.secondary)
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 12)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .background(Color(.systemGray6))
-                                    .clipShape(RoundedRectangle(cornerRadius: Theme.cornerSmall, style: .continuous))
                             }
                         } else {
                             VStack(spacing: 12) {
@@ -411,7 +431,7 @@ struct RecentActivityRow: View {
 
 #Preview {
     @Previewable @State var debugSettings = DebugSettings.shared
-    return ContentView()
+    ContentView()
         .modelContainer(for: WorkoutEntry.self, inMemory: true)
         .environment(debugSettings)
 }
